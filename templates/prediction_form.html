@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+    <h1>Bank Note Prediction App</h1>
+    <form method="post" action="/predict" id="prediction_form">
+        <label for="variance">Variance:</label>
+        <input type="number" step="any" name="variance" required><br><br>
+        
+        <label for="skewness">Skewness:</label>
+        <input type="number" step="any" name="skewness" required><br><br>
+        
+        <label for="curtosis">Curtosis:</label>
+        <input type="number" step="any" name="curtosis" required><br><br>
+        
+        <label for="entropy">Entropy:</label>
+        <input type="number" step="any" name="entropy" required><br><br>
+        
+        <input type="submit" value="Predict">
+        <input type="button" id="clear_button" value="Clear" onclick="clearForm()" style="background-color: #333; color: #fff; border: none; border-radius: 5px;">
+    </form>
+    <div class="result">
+        <p>Prediction: {{ prediction }}</p>
+    </div>
+
+    <script>
+
+        // Clear Button Script
+        function clearForm() {
+            // Clear form fields by resetting the form
+            document.getElementById("prediction_form").reset();
+            
+            // Clear the prediction result
+            document.querySelector(".result p").textContent = "Prediction: ";
+        }
+
+        // Add hover effect
+            var clearButton = document.getElementById("clear_button");
+
+        clearButton.addEventListener("mouseover", function() {
+            // Change the background color when the mouse hovers over the button
+            clearButton.style.backgroundColor = "lightgray";
+        });
+
+        clearButton.addEventListener("mouseout", function() {
+            // Restore the original background color when the mouse moves out
+            clearButton.style.backgroundColor = "";
+        });
+
+</script>
+</body>
+</html>
